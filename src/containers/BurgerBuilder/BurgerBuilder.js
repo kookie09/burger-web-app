@@ -18,7 +18,8 @@ class BurgerBuilder extends Component {
 
     state = {
         purchasing: false,
-        loading: false
+        loading: false,
+        error: false
     }
 
     componentDidMount() {
@@ -90,20 +91,17 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-         const queryParams = [];
-        for(let i in this.state.ingredients) {
-            queryParams.push(encodeURIComponent(i) 
-                        + '=' 
-                        + encodeURIComponent(this.state.ingredients[i]));
-        }
+        //  const queryParams = [];
+        // for(let i in this.state.ingredients) {
+        //     queryParams.push(encodeURIComponent(i) 
+        //                 + '=' 
+        //                 + encodeURIComponent(this.state.ingredients[i]));
+        // }
 
-        queryParams.push('price=' + this.state.totalPrice);
-        const queryString = queryParams.join('&');
+        // queryParams.push('price=' + this.state.totalPrice);
+        // const queryString = queryParams.join('&');
         
-        this.props.history.push({
-            pathname: '/checkout',
-            search: '?' + queryString
-        });
+        this.props.history.push('/checkout');
     }
 
 
