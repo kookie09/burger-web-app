@@ -100,7 +100,7 @@ class BurgerBuilder extends Component {
 
         // queryParams.push('price=' + this.state.totalPrice);
         // const queryString = queryParams.join('&');
-        
+
         this.props.history.push('/checkout');
     }
 
@@ -136,7 +136,7 @@ class BurgerBuilder extends Component {
                 purchaseContinued={this.purchaseContinueHandler}
             />;
 
-            if(this.state.loading) {
+            if (this.state.loading) {
                 orderSummary = <Spinner />
             }
         }
