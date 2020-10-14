@@ -89,12 +89,12 @@ class ContactData extends Component {
 
                     ]
                 },
-                formIsValid: false,
-                value: '',
+                value: 'fastest',
                 validation: {},
                 valid: true
             }
-        }
+        },
+        formIsValid: false
     }
 
     orderHandler = (event) => {
