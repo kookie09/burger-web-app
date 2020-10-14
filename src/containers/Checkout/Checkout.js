@@ -16,9 +16,6 @@ class Checkout extends Component {
         this.props.history.replace('/checkout/contact-data');
     }
 
-    componentWillMount() {
-        this.props.onInitPurchase();
-    }
 
     // componentWillMount() {
     //     const query = new URLSearchParams(this.props.location.search);
@@ -67,11 +64,7 @@ const mapStateToProps = state => {
     }
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onInitPurchase: () => dispatch(actions.purchaseInit)
-    }
-};
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
+
+export default connect(mapStateToProps)(Checkout);
