@@ -99,7 +99,7 @@ class ContactData extends Component {
 
     orderHandler = (event) => {
         event.preventDefault();
-       const formData = {};
+        const formData = {};
         for (let formElementIdentifier in this.state.orderForm) {
             formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
         }
@@ -135,7 +135,7 @@ class ContactData extends Component {
     inputChangeHandler = (event, inputIdentifier) => {
         const updatedOrderForm = {
             ...this.state.orderForm
-        }
+        };
         const updatedFormElement = {
             ...updatedOrderForm[inputIdentifier]
         };
@@ -164,7 +164,8 @@ class ContactData extends Component {
         let form = (
             <form onSubmit={this.orderhandler}>
                 {formElementArray.map(formElement => (
-                    <Input elementType={formElement.config.elementType}
+                    <Input
+                        elementType={formElement.config.elementType}
                         elementConfig={formElement.config.elementConfig}
                         value={formElement.config.value}
                         key={formElement.id}
@@ -197,9 +198,10 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch =>  {
+const mapDispatchToProps = dispatch => {
     return {
-    onOrderBurger: (orderData) => dispatch(actions.purchaseBurger(orderData))
-}};
+        onOrderBurger: (orderData) => dispatch(actions.purchaseBurger(orderData))
+    }
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(withErrorhandler(ContactData, axios));
