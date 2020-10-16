@@ -1,5 +1,4 @@
 import * as actionTypes from '../actions/actionType';
-import { purchaseInit } from '../actions/order';
 import { updateObject } from '../utility';
 
 const initialState = {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Connect } from "react-redux";
+import { connect } from 'react-redux';
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
 import classes from './Auth.module.css';
@@ -124,7 +124,7 @@ class Auth extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAUth: (email, password) => dispatch(actions.auth(email, password))
+        onAuth: (email, password) => dispatch(actions.auth(email, password))
     };
 };
 
