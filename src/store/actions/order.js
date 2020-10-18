@@ -1,5 +1,6 @@
 import * as actionTypes from './actionType';
 import axios from '../../axios-orders';
+import { useImperativeHandle } from 'react';
 
 export const purchaseBurgerSuccess = (id, orderData) => {
     return {
@@ -25,7 +26,7 @@ export const purchaseBurgerStart = () => {
 export const purchaseBurger = (orderData, token) => {
     return dispatch => {
         dispatch(purchaseBurgerStart());
-        axios.post('/orders.json?auth=' + token, orderData).then(
+          axios.post('/orders.json?auth=' + token, orderData).then(
             response => {
                 console.log(response.data);
                 dispatch(purchaseBurgerSuccess(response.data.name, orderData));
@@ -63,10 +64,11 @@ export const fetchOrderStart = () => {
     };
 };
 
-export const fetchOrders = (token) => {
+export const fetchOrders = (token, userId) => {
     return dispatch => {
         dispatch(fetchOrderStart());
-        axios.get('/orders.json?auth=' + token)
+        const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
+        axios.get('/orders.json' + queryParams)
             .then(res => {
                 const fetchOrders = [];
                 for (let key in res.data) {
