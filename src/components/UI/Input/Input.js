@@ -8,9 +8,7 @@ const input = (props) => {
 
     if(props.invalid && props.shouldValidate && props.touched) {
         inputClasses.push(classes.Invalid);
-        console.log(inputClasses.join(" "));
-        
-    }
+      }
 
 
     switch (props.elementType) {
