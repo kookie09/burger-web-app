@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
@@ -43,8 +43,8 @@ class Auth extends Component {
         isSignUp: true
     }
 
-    componentDidMount () {
-        if(!this.props.buildingBurger && this.props.authRedirectPath != '/') {
+    componentDidMount() {
+        if (!this.props.buildingBurger && this.props.authRedirectPath !== '/') {
             this.props.onSetAuthRedirectPath();
         }
     };
@@ -141,8 +141,8 @@ class Auth extends Component {
 
         let authRedirect = null;
 
-        if(this.props.isAuthenticated) {
-            authRedirect = <Redirect to = {this.props.authRedirectPath}/>
+        if (this.props.isAuthenticated) {
+            authRedirect = <Redirect to={this.props.authRedirectPath} />
         }
 
         return (
