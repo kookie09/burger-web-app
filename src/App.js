@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
-import {connect} from 'react-redux';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
- 
+
 import Layout from './hoc/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 import Checkout from './containers/Checkout/Checkout';
@@ -12,28 +12,48 @@ import Logout from './containers/Auth/Logout/Logout';
 import * as actions from './store/actions/index';
 
 class App extends Component {
-  
-  componentDidMount () {
+
+  componentDidMount() {
     this.props.onTryAutoSignup();
   }
-  
-  render () {
+
+  render() {
+
+    let routes = (
+      <Switch>
+        <Route path="/auth" exact component={Auth} />
+        <Route path="/" exact component={BurgerBuilder} />
+        <Redirect to='/' />
+      </Switch>
+    );
+
+    if (this.props.isAuthenticated) {
+      routes = (
+        <Switch>
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/orders" exact component={Orders} />
+          <Route path="/logout" exact component={Logout} />
+          <Route path="/" exact component={BurgerBuilder} />
+          <Redirect to='/' />
+        </Switch>
+      )
+    }
 
     return (
       <div>
         <Layout>
-          <Switch>
-            <Route path="/checkout" component={Checkout} />
-            <Route path="/orders" exact component={Orders} />
-            <Route path="/auth" exact component={Auth} />
-            <Route path="/logout" exact component={Logout} />
-            <Route path="/" exact component={BurgerBuilder} />
-          </Switch>
+          {routes}
         </Layout>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -41,4 +61,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
