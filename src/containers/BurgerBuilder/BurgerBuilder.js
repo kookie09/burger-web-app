@@ -81,7 +81,7 @@ export class BurgerBuilder extends Component {
     // };
 
     purchaseHandler = () => {
-        if(this.props.isAuthenticated) {
+        if (this.props.isAuthenticated) {
             this.setState({ purchasing: true });
         } else {
             this.props.onSetAuthRedirectPath('/checkout');
@@ -129,7 +129,7 @@ export class BurgerBuilder extends Component {
                         price={this.props.price}
                         purchaseable={this.updatePurchaseState(this.props.ings)}
                         ordered={this.purchaseHandler}
-                        isAuth = {this.props.isAuthenticated}
+                        isAuth={this.props.isAuthenticated}
                     />
                 </Aux>
             );
